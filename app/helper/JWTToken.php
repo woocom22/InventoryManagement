@@ -7,7 +7,7 @@ use Mockery\Exception;
 
 class JWTToken
 {
-    function createToken($userEmail):string {
+   public static function createToken($userEmail):string {
         $key = env('JWT_KEY');
         $payload = [
             "iss" => env('JWT-HR'),   // issuer name
@@ -17,7 +17,7 @@ class JWTToken
         ];
         return JWT::encode($payload, $key, 'HS256');
     }
-    function verifyToken($token):string
+    public static function verifyToken($token):string
     {
         try {
             $Key = env('JWT_KEY');

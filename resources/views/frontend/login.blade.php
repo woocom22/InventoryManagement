@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-4 ">
-                <form>
+                <form method="post" action="{{ route('user.dashboard') }}">
                     @csrf
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>

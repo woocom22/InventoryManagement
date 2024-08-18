@@ -9,4 +9,4 @@ Route::get('/', function () {
 Route::get('/user-registration', [userController::class, 'registrationForm'])->name('form.Registration');
 Route::post('/user-registration-form', [userController::class, 'registrationFormPost'])->name('form.Registration.Post');
 Route::get('/user-login', [userController::class, 'loginForm'])->name('form.Login');
-
+Route::post('/user-dashboard', [userController::class, 'userLogin'])->name('user.dashboard');

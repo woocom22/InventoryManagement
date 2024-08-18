@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helper\JWTToken;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
@@ -39,7 +40,29 @@ class userController extends Controller
     {
         return view('frontend.login');
     }
+function userLogin(Request $request)
+{
+    $count=User::where('email','=',$request->input('email'))
+        ->where('password','=',$request->input('password'))
+        ->count();
 
+    if($count==1){
+        // User Login-> JWT Token Issue
+        $token=JWTToken::CreateToken($request->input('email'));
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User Login Successful',
+            'token' =>$token
+        ],200);
+    }
+    else{
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'unauthorized'
+        ],200);
+
+    }
+}
 
 
 
