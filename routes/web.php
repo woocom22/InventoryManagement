@@ -12,3 +12,5 @@ Route::get('/user-login', [userController::class, 'loginForm'])->name('form.Logi
 Route::post('/user-dashboard', [userController::class, 'userLogin'])->name('user.dashboard');
 Route::get('/send-code',[userController::class, 'sendCode'])->name('otp.Code');
 Route::post('/send-otp', [userController::class, 'SentOTPCode'])->name('otp.send');
+Route::get('/verify-otp-page',[userController::class, 'verifyOTPPage'])->name('otp.verifyPage');
+Route::post('/verify-otp', [userController::class, 'verifyOTP'])->name('otp.verify');

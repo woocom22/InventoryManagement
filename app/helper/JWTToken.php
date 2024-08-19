@@ -17,6 +17,16 @@ class JWTToken
         ];
         return JWT::encode($payload, $key, 'HS256');
     }
+    public static function createTokenForPasswordReset($userEmail):string {
+        $key = env('JWT_KEY');
+        $payload = [
+            "iss" => env('JWT-HR'),   // issuer name
+            "iat" => time(),               // issue time
+            'exp' => time() + 60*20,       // expire date
+            'userEmail' => $userEmail     // user email
+        ];
+        return JWT::encode($payload, $key, 'HS256');
+    }
     public static function verifyToken($token):string
     {
         try {

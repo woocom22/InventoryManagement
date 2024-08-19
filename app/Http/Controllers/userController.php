@@ -93,6 +93,35 @@ function SentOTPCode(Request $request){
     }
 }
 
+function verifyOTPPage(){
+    return view('frontend.otpCodeSubmit');
+}
+function verifyOTP(Request $request){
+    $email=$request->input('email');
+    $otp=$request->input('otp');
+    $count=User::where('email', '=',$email)
+        ->where('otp','=',$otp)
+        ->count();
+
+    if($count==1){
+        // Update OTP into database
+        User::where('email', '=',$email)->update(['otp'=>'0']);
+        // issue new token for reset password
+        $token=JWTToken::createTokenForPasswordReset($request->input('email'));
+
+        return response()->json([
+            'status' => 'Susscess',
+            'message' => 'OTP Verified Successfully',
+            'token' =>$token
+        ],200);
+    }else{
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Please enter valid OTP or Email address'
+        ],200);
+    }
+}
+
 
 
 }
