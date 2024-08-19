@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\helper\JWTToken;
+use App\Mail\OTPMail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use PHPUnit\Exception;
 
 class userController extends Controller
@@ -64,13 +66,25 @@ function userLogin(Request $request)
     }
 }
 
+function sendCode()
+{
+    return view('frontend.otpCode');
+}
+
 function SentOTPCode(Request $request){
     $email=$request->input('email');
     $otp=rand(1000,9999);
     $count=User::where('email','=',$email)->count();
 
     if($count==1){
-
+        // OTP Email
+        Mail::to($email)->send(new OTPMail($otp));
+        // OTP Code update into User table
+        User::where('email','=',$email)->update(['otp'=>$otp]);
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'a 4 digit OTP has been sent to your email'
+        ],200);
     }else{
         return response()->json([
             'status' => 'failed',
