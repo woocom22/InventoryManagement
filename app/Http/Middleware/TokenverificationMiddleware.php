@@ -16,7 +16,7 @@ class TokenverificationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token=$request->header('token');
+        $token=$request->cookie('token');
         $result=JWTToken::verifyToken($token);
         if ($result=='Unauthorized'){
             return response()->json([
@@ -24,7 +24,7 @@ class TokenverificationMiddleware
                 'message' => 'unauthorized'
             ]);
         } else{
-            $request->header->set('email', $result);
+            $request->headers->set('email', $result);
             return $next($request);
         }
 

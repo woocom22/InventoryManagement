@@ -1,9 +1,8 @@
-<x-layout>
+@extends('layout.app')
+@section('content')
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="col-4 ">
-                <form method="post" action="{{ route('resetPassword') }}">
-                    @csrf
+            <div class="col-4 bg-secondary p-5 shadow-lg p-5" style="border-radius: 10px;">
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input type="email" name="email" class="form-control" >
@@ -12,9 +11,13 @@
                         <label for="exampleInputEmail1" class="form-label">OTP Code</label>
                         <input type="text" name="otp" class="form-control" >
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4">Reset Password</button>
-                </form>
+                    <button onclick="RestPassword()" type="submit" class="btn btn-primary mt-4">Reset Password</button>
             </div>
         </div>
     </div>
-</x-layout>
+
+<script>function RestPassword() {
+
+    }
+</script>
+@endsection

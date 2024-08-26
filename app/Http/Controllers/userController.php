@@ -13,8 +13,35 @@ class userController extends Controller
 {
     function  registrationForm()
     {
-        return view('frontend.registration');
+        return view('page.auth.registration');
     }
+    function loginForm()
+    {
+        return view('page.auth.login');
+    }
+    function sendCode()
+    {
+        return view('page.auth.otpCode');
+    }
+    function verifyOTPPage(){
+        return view('page.auth.otpCodeSubmit');
+    }
+
+    function resetPasswordPage()
+    {
+        return view('page.auth.resetPassword');
+    }
+
+    function userDashboard()
+    {
+        return view('page.dashboard.dashboard');
+    }
+
+
+
+
+
+
     function registrationFormPost(Request $request)
     {
         try {
@@ -38,10 +65,7 @@ class userController extends Controller
 
 
     }
-    function loginForm()
-    {
-        return view('frontend.login');
-    }
+
 function userLogin(Request $request)
 {
     $count=User::where('email','=',$request->input('email'))
@@ -54,8 +78,7 @@ function userLogin(Request $request)
         return response()->json([
             'status' => 'success',
             'message' => 'User Login Successful',
-            'token' =>$token
-        ],200);
+        ],200)->cookie('token', $token,60*24*30);
     }
     else{
         return response()->json([
@@ -66,10 +89,6 @@ function userLogin(Request $request)
     }
 }
 
-function sendCode()
-{
-    return view('frontend.otpCode');
-}
 
 function SentOTPCode(Request $request){
     $email=$request->input('email');
@@ -89,13 +108,11 @@ function SentOTPCode(Request $request){
         return response()->json([
             'status' => 'failed',
             'message' => 'unauthorized'
-        ],200);
+        ]);
     }
 }
 
-function verifyOTPPage(){
-    return view('frontend.otpCodeSubmit');
-}
+
 function verifyOTP(Request $request){
     $email=$request->input('email');
     $otp=$request->input('otp');
@@ -122,10 +139,7 @@ function verifyOTP(Request $request){
     }
 }
 
-function resetPasswordPage()
-{
-    return view('frontend.resetPassword');
-}
+
 function resetPassword(Request $request){
     try {
         $email=$request->header('email');
@@ -141,8 +155,6 @@ function resetPassword(Request $request){
             'message' => 'Unauthorized'
         ]);
     }
-
-
 }
 
 
