@@ -127,10 +127,10 @@ function verifyOTP(Request $request){
         $token=JWTToken::createTokenForPasswordReset($request->input('email'));
 
         return response()->json([
-            'status' => 'Susscess',
+            'status' => 'success',
             'message' => 'OTP Verified Successfully',
             'token' =>$token
-        ],200);
+        ],200)->cookie('token', $token,60*24*30);
     }else{
         return response()->json([
             'status' => 'failed',

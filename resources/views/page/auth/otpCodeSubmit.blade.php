@@ -26,13 +26,14 @@
             showLoader();
             let res = await axios.post('/verify-otp', {
                 otp: otp,
+                email:sessionStorage.getItem('email')
             })
             hideLoader();
             if(res.status===200 && res.data['status']==='success'){
                 successToast(res.data['message'])
+                sessionStorage.clear();
                 setTimeout(() => {
-                    window.location.href = '/user-login';
-                    sessionStorage.clear();
+                    window.location.href = '/reset-page'
                 }, 1000);
             }
             else {
