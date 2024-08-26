@@ -148,12 +148,12 @@ function resetPassword(Request $request){
         return response()->json([
             'status' => 'success',
             'message' => 'Password Reset Successful'
-        ]);
+        ],200);
     } catch (Exception $exception){
         return response()->json([
             'status' => 'failed',
             'message' => 'Unauthorized'
-        ]);
+        ],200);
     }
 }
 
