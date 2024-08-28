@@ -20,8 +20,6 @@
 </div>
 @yield('content')
 
-
-<script src="{{ asset('js/') }}"
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/axios.min.js') }}"></script>
 <script src="{{ asset('js/toastify-js.js') }}"></script>
