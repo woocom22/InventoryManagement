@@ -15,6 +15,7 @@ Route::get('/send-code',[userController::class, 'sendCode'])->name('otp.Code');
 Route::get('/verify-otp-page',[userController::class, 'verifyOTPPage'])->name('otp.verifyPage');
 Route::get('/reset-page',[userController::class, 'resetPasswordPage'])->middleware([TokenverificationMiddleware::class]);
 Route::get('/dashboard', [userController::class, 'userDashboard'])->middleware([TokenverificationMiddleware::class]);
+Route::get('/userProfilePage', [userController::class, 'profilePage'])->middleware([TokenverificationMiddleware::class]);
 
 // User Logout
 Route::get('/user-logout', [userController::class, 'userLogout']);
@@ -25,8 +26,8 @@ Route::post('/user-login', [userController::class, 'userLogin']);
 Route::post('/sendOTP', [userController::class, 'SentOTPCode']);
 Route::post('/verify-otp', [userController::class, 'verifyOTP'])->name('otp.verify');
 Route::post('/reset-password', [userController::class, 'resetPassword'])->middleware([TokenverificationMiddleware::class]);
-
-
+Route::get('/user-profile',[UserController::class,'UserProfile'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/user-update',[UserController::class,'UpdateProfile'])->middleware([TokenVerificationMiddleware::class]);
 
 
 

@@ -1,5 +1,5 @@
 /**
- * Minified by jsDelivr using Terser v5.19.2.
+ * Minified by jsDelivr using Terser v5.14.1.
  * Original file: /npm/toastify-js@1.12.0/src/toastify.js
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files

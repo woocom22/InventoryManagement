@@ -1,14 +1,14 @@
-function showLoader(){
+function showLoader() {
     document.getElementById('loader').classList.remove('d-none')
 }
-function hideLoader(){
+function hideLoader() {
     document.getElementById('loader').classList.add('d-none')
 }
 
-function successToast(msg){
+function successToast(msg) {
     Toastify({
-        gravity: "bottom",
-        position: "center",
+        gravity: "bottom", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
         text: msg,
         className: "mb-5",
         style: {
@@ -17,10 +17,10 @@ function successToast(msg){
     }).showToast();
 }
 
-function errorToast(msg){
+function errorToast(msg) {
     Toastify({
-        gravity: "bottom",
-        position: "center",
+        gravity: "bottom", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
         text: msg,
         className: "mb-5",
         style: {
@@ -28,8 +28,3 @@ function errorToast(msg){
         }
     }).showToast();
 }
-
-
-
-
-
