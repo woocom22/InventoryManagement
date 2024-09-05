@@ -34,6 +34,11 @@ class CategoryController extends Controller
         return Category::where('id',$category_id)->where('user_id',$user_id)->delete();
     }
 
+    function CategoryByID(Request $request){
+        $category_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Category::where('id',$category_id)->where('user_id',$user_id)->first();
+    }
     function CategoryUpdate(Request $request)
     {
         $category_id=$request->input('id');
@@ -43,3 +48,22 @@ class CategoryController extends Controller
         ]);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

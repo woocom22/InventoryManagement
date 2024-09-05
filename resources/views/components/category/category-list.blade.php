@@ -57,9 +57,10 @@
             tableList.append(row)
         })
 
-        $('.editBtn').on('click', function () {
+        $('.editBtn').on('click',async function () {
             let id= $(this).data('id');
-            alert(id);
+            await FillUpUpdateForm(id);
+            $("#update-modal").modal('show')
         })
 
         $('.deleteBtn').on('click', function (){
